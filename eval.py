@@ -16,6 +16,7 @@ def _eval(path_to_checkpoint: str, path_to_data_dir: str, path_to_results_dir: s
     dataloader = DataLoader(dataset, batch_size=64, shuffle=False)
 
     model = Model().cuda()
+    print(path_to_checkpoint)
     model.load(path_to_checkpoint)
 
     num_hits = 0

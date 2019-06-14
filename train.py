@@ -12,14 +12,13 @@ from model import Model
 
 def _train(path_to_data_dir: str, path_to_checkpoints_dir: str):
     os.makedirs(path_to_checkpoints_dir, exist_ok=True)
-
     dataset = Dataset(path_to_data_dir, mode=Dataset.Mode.TRAIN)
     dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
 
     # TODO: CODE START
-    raise NotImplementedError
-    # model = XXX
-    # optimizer = XXX
+    #raise NotImplementedError
+    model = Model().cuda()
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     # TODO: CODE END
 
     num_steps_to_display = 20
@@ -39,7 +38,12 @@ def _train(path_to_data_dir: str, path_to_checkpoints_dir: str):
             labels = labels.cuda()
 
             # TODO: CODE START
-            raise NotImplementedError
+            #print(type(images))
+            output = model(images)
+            loss = model.loss(output, labels)
+            #print("loss= ", loss)
+            
+            #raise NotImplementedError
             # logits = XXX
             # loss = XXX
             # TODO: CODE END
